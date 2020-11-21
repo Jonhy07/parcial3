@@ -24,8 +24,7 @@
     			method: 'POST',
     			url: 'http://127.0.0.1:8000/graphql/',
     			data: {
-    				query: `
-    				{
+    				query: `{
 					  allTitles {
 					    edges {
 					      node {
@@ -34,8 +33,7 @@
 					      }
 					    }
 					  }
-					}
-    				`
+					}`
     			}
     		})
     		this.directory = result.data.data.allTitles
