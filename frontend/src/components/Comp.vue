@@ -1,12 +1,23 @@
 <template>
 
   <div>
-
-    <p>Hola mundo </p>
-    {{ directory }}
-
+    <table class="table table-striped mt-4">
+      <thead>
+      <tr>
+        <th scope="col">Nombre</th>
+        <th scope="col">Puesto</th>
+        <th scope="col">Ciudad</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr v-for="input in directory.edges" :key="input.id">
+        <td>{{ input.node.employeeName }}</td>
+        <td>{{ input.node.employeeTitle.titleName }}</td>
+        <td>{{ input.node.employeeCity.cityName }}</td>
+      </tr>
+      </tbody>
+    </table>
   </div>
-
 </template>
 
 <script>
@@ -20,23 +31,31 @@
     },
     async mounted () {
     	try {
-    		var result = await axios({
-    			method: 'POST',
-    			url: 'http://127.0.0.1:8000/graphql/',
-    			data: {
-    				query: `{
-					  allTitles {
-					    edges {
-					      node {
-					        id
-					        titleName
-					      }
-					    }
-					  }
-					}`
+	var result = await axios({
+		method: 'POST',
+		url: 'http://127.0.0.1:8000/graphql/',
+		data: {
+			query: `
+			{
+			  allEmployees {
+			    edges {
+			      node {
+				id
+				employeeName
+				employeeTitle {
+				  titleName
+				}
+				employeeCity {
+				  cityName
+				}
+			      }
+			    }
+			  }
+			}
+			`
     			}
     		})
-    		this.directory = result.data.data.allTitles
+    		this.directory = result.data.data.allEmployees
     	} catch (error) {
     		console.error(error)
     	}
