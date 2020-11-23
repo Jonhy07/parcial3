@@ -11,7 +11,7 @@
       </thead>
       <tbody>
       <tr v-for="input in directory.edges" :key="input.id">
-        <td>{{ input.node.employeeName }}</td>
+        <td>{{ input.node.nombre_medicamento }}</td>
         <td>{{ input.node.employeeTitle.titleName }}</td>
         <td>{{ input.node.employeeCity.cityName }}</td>
       </tr>
@@ -41,7 +41,7 @@
 			    edges {
 			      node {
 				id
-				employeeName
+				nombre_medicamento
 				employeeTitle {
 				  titleName
 				}

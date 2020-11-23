@@ -30,7 +30,7 @@ class Migration(migrations.Migration):
             name='Employee',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('employee_name', models.CharField(max_length=255)),
+                ('nombre_medicamento', models.CharField(max_length=255)),
                 ('employee_city', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='employee_city', to='proyecto.city')),
                 ('employee_title', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='employee_title', to='proyecto.title')),
             ],
